@@ -1,0 +1,9 @@
+pyforrst
+==========
+
+Python interface to the [Forrst](http://forrst.com) [API](http://forrst.com/apidocs.html).
+
+Copyright
+---------
+
+Copyright (c) 2010 pyforrst Authors (as specified in AUTHORS file). See LICENSE for details.
