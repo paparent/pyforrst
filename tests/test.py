@@ -87,7 +87,8 @@ class TestUserPosts(unittest.TestCase):
         """
         Verify user_posts returns correct data for valid user
         """
-        self._verify_posts_from_user(TEST_USERNAME, pyforrst.user_posts(TEST_USERNAME))
+        self._verify_posts_from_user(TEST_USERNAME,
+                                    pyforrst.user_posts(TEST_USERNAME))
 
     def test_user_posts_since_success(self):
         """
