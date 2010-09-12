@@ -89,6 +89,25 @@ class TestUserPosts(unittest.TestCase):
         """
         self._verify_posts_from_user(TEST_USERNAME, pyforrst.user_posts(TEST_USERNAME))
 
+    def test_user_posts_since(self):
+        """
+        Verify user_posts returns correct data for valid user and since param
+        """
+
+        # Picking an arbitrary large ID to use so hopefully some posts come
+        # back.  Thus, we're actually testing something.
+        since_id = 1000000
+
+        posts = pyforrst.user_posts(TEST_USERNAME, since_id)
+        self._verify_posts_from_user(TEST_USERNAME, posts)
+
+        # Make sure no ID is greater than the since_id b/c that's what
+        # the API says it does...
+        for post in posts:
+            post_id = int(post['id'])
+            self.assertTrue(post_id < since_id,
+                            "Post ID: %d not less than since_id: %d" % \
+                            (post_id, since_id))
 
     def test_user_posts_invalid_user(self):
         """
