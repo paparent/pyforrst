@@ -10,7 +10,7 @@ import pyforrst
 TEST_USERNAME = "kyle"
 
 # Matches above username
-TEST_USERID = 1
+TEST_USERID = u'1'
 
 
 class TestUserInfo(unittest.TestCase):
@@ -29,10 +29,9 @@ class TestUserInfo(unittest.TestCase):
                             "Username requested: '%s' returned: '%s'" % \
                             (TEST_USERNAME, user['username']))
 
-        # int() conversions needed b/c forrst API returns unicode
-        self.assertEqual(int(user['id']), TEST_USERID,
-                         "User ID requested: %d returned: %d" % \
-                         (TEST_USERID, int(user['id'])))
+        self.assertEqual(user['id'], TEST_USERID,
+                         "User ID requested: %s returned: %s" % \
+                         (TEST_USERID, user['id']))
 
     def test_user_info_success(self):
         """
@@ -51,7 +50,8 @@ class TestUserInfo(unittest.TestCase):
         """
         Verify that user_info_by_id() returns correct data with valid user id
         """
-        self._verify_test_user(pyforrst.user_info_by_id(TEST_USERID))
+        # int() conversion needed b/c API takes int, not unicode
+        self._verify_test_user(pyforrst.user_info_by_id(int(TEST_USERID)))
 
     def test_user_info_id_invalid_id(self):
         """
