@@ -89,7 +89,7 @@ class TestUserPosts(unittest.TestCase):
         """
         self._verify_posts_from_user(TEST_USERNAME, pyforrst.user_posts(TEST_USERNAME))
 
-    def test_user_posts_since(self):
+    def test_user_posts_since_success(self):
         """
         Verify user_posts returns correct data for valid user and since param
         """
@@ -108,6 +108,20 @@ class TestUserPosts(unittest.TestCase):
             self.assertTrue(post_id < since_id,
                             "Post ID: %d not less than since_id: %d" % \
                             (post_id, since_id))
+
+    def test_user_posts_zero_posts_since(self):
+        """
+        Verify user_posts returns no posts for given a since_id that doesn't
+        have any predecessors (-1)
+        """
+        self.assertEqual(0, len(pyforrst.user_posts(TEST_USERNAME, -1)))
+
+    def test_user_posts_invalid_since(self):
+        """
+        Verify user_posts returns error when given invalid since id
+        """
+        self.assertRaises(pyforrst.ForrstError, pyforrst.user_posts,
+                          TEST_USERNAME, 'notanumber')
 
     def test_user_posts_invalid_user(self):
         """
