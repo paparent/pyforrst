@@ -12,6 +12,9 @@ TEST_USERNAME = "kyle"
 # Matches above username
 TEST_USERID = u'1'
 
+# Used for error testing
+TEST_INVALID_USER = "INVALIDUSER123"
+
 
 class TestUserInfo(unittest.TestCase):
     """
@@ -44,7 +47,7 @@ class TestUserInfo(unittest.TestCase):
         Verify that user_info() returns an error when given invalid user
         """
         self.assertRaises(pyforrst.ForrstError, pyforrst.user_info,
-                            'INVALIDUSER123')
+                            TEST_INVALID_USER)
 
     def test_user_info_id_success(self):
         """
@@ -92,7 +95,7 @@ class TestUserPosts(unittest.TestCase):
         Verify user_posts returns error when given invalid username
         """
         self.assertRaises(pyforrst.ForrstError, pyforrst.user_posts,
-                            'INVALIDUSER123')
+                            TEST_INVALID_USER)
 
 
 if __name__ == '__main__':
