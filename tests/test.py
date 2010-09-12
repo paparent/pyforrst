@@ -87,5 +87,13 @@ class TestUserPosts(unittest.TestCase):
         self._verify_posts_from_user(TEST_USERNAME, pyforrst.user_posts(TEST_USERNAME))
 
 
+    def test_user_posts_invalid_user(self):
+        """
+        Verify user_posts returns error when given invalid username
+        """
+        self.assertRaises(pyforrst.ForrstError, pyforrst.user_posts,
+                            'INVALIDUSER123')
+
+
 if __name__ == '__main__':
     unittest.main()
