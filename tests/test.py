@@ -64,11 +64,11 @@ class TestUserPosts(unittest.TestCase):
     """
     Test user_posts API function
     """
-    def test_user_posts_success(self):
+
+    def _verify_posts_from_user(self, user, posts):
         """
-        Verify user_posts returns correct data for valid user
+        Helper method to verify posts for given user
         """
-        posts = pyforrst.user_posts(TEST_USERNAME)
 
         for post in posts:
             # Don't bother testing for EVERY key, just the 'important' ones
@@ -79,6 +79,13 @@ class TestUserPosts(unittest.TestCase):
             self.assertEqual(post['user_id'], TEST_USERID,
                          "Post's User ID: %s doesn't match requested: %s" % \
                          (post['user_id'], TEST_USERID))
+
+    def test_user_posts_success(self):
+        """
+        Verify user_posts returns correct data for valid user
+        """
+        self._verify_posts_from_user(TEST_USERNAME, pyforrst.user_posts(TEST_USERNAME))
+
 
 if __name__ == '__main__':
     unittest.main()
