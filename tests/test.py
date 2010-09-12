@@ -60,5 +60,25 @@ class TestUserInfo(unittest.TestCase):
         self.assertRaises(pyforrst.ForrstError, pyforrst.user_info_by_id, -1)
 
 
+class TestUserPosts(unittest.TestCase):
+    """
+    Test user_posts API function
+    """
+    def test_user_posts_success(self):
+        """
+        Verify user_posts returns correct data for valid user
+        """
+        posts = pyforrst.user_posts(TEST_USERNAME)
+
+        for post in posts:
+            # Don't bother testing for EVERY key, just the 'important' ones
+            self.assertTrue('id' in post, "ID key missing from posts")
+            self.assertTrue('content' in post, "Content key missing from post")
+            self.assertTrue('user_id' in post, "User ID key missing from post")
+
+            self.assertEqual(post['user_id'], TEST_USERID,
+                         "Post's User ID: %s doesn't match requested: %s" % \
+                         (post['user_id'], TEST_USERID))
+
 if __name__ == '__main__':
     unittest.main()
