@@ -1,1 +1,7 @@
 *.pyc
+
+# Pycharm
+*.idea
+
+# VI
+*.swp

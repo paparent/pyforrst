@@ -65,6 +65,11 @@ def user_posts(username, since=None):
     """
     url = "users/posts?username=%s" % (username,)
     if since is not None:
+        # You could argue the word 'since' isn't exactly intuitively an integer
+        # so make sure users know it
+        if not isinstance(since, int):
+           raise ForrstError("since parameter must be valid id (integer)")
+
         url = url + "&since=%d" % (since,)
     response = call(url)
     return response['posts']
