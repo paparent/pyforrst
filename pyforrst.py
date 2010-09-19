@@ -16,7 +16,7 @@ except ImportError:
         raise Exception("A JSON parser is required, e.g., simplejson at " \
                         "http://pypi.python.org/pypi/simplejson/")
 
-version_info = (0, 1)
+version_info = (0, 2)
 __version__ = ".".join(map(str, version_info))
 _BASE_URI = "http://api.forrst.com/api/v1/"
 
