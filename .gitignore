@@ -1,7 +1,8 @@
 *.pyc
-
 # Pycharm
 *.idea
-
 # VI
 *.swp
+dist
+pyforrst.egg-info
+
